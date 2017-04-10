@@ -1,0 +1,141 @@
+/* Global Styles */
+h1, h2, h3, h4, h5, h6 {
+font-weight: bold;
+}
+
+.alert {
+/* Ми додали відстань лише зверху елемента: -top */
+margin-top: 10px;
+}
+
+#footer {
+/* задаємо верхню межу елемента: ширина лінії, тип лінії, колір
+лінії */
+border-top: 1px solid #dddddd;
+/* задаємо внутрішню відстань елемента до верхнього краю */
+padding-top: 10px;
+}
+
+/* Groups Selector */
+#group-selector {
+margin-top: 30px;
+}
+
+#group-selector select {
+margin: 0;
+width: 85%;
+background-color: #ffffff;
+border: 1px solid #cccccc;
+height: 30px;
+line-height: 30px;
+color: #555555;
+}
+/* Form Styles */
+textarea,
+select,
+input {
+max-width: 300px;
+}
+/*journal table styles*/
+td.day-box,
+th.day-header {
+	padding: 4px !important;
+	vertical-align: middle !important;
+	text-align: center;
+	color: green;
+}
+
+#check-box{
+  color: #ffffff;
+}
+
+
+#ajax-progress-indicator {
+	display: none;
+}
+
+#title_form_add{
+  padding-left: 180px;	
+}
+
+#title_form_edit{
+  padding-left: 380px;	
+}
+
+#title_form_add{
+	padding-left: 405px;
+}
+
+#title_form_add
+.modal-content{
+   background: #00FFFF;	
+}
+
+#lang-selector{
+	padding-top: 18px;
+}
+
+
+#user-toolbar{
+	margin-top: 30px;
+	margin-left: 465px;
+}
+
+#log_title{
+	padding-left: 320px;
+}
+
+
+#login_title{
+	padding-left: 490px;
+	padding-top: 140px;
+}
+
+#log_form{
+	margin-left: 400px;
+}
+
+
+#log_button{
+	margin-left: 100px;
+}
+
+
+#reg_title{
+	padding-left: 460px;
+	padding-top: 100px;
+}
+
+
+#reg_button{
+	margin-left: 85px;
+}
+
+
+#cont_form{
+	margin-left: 270px;
+}
+
+#cont_title{
+	margin-left: 270px;
+}
+
+
+
+.form-horizontal{
+	margin-left: 250px;
+}
+
+#coments{
+	margin-left: 405px;
+}
+
+
+#Hcolor{
+  color: #FF0000;
+}
+
+
+#Pcolor{
+  color: #000000;
+}

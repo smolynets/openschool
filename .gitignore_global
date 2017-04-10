@@ -1,0 +1,8 @@
+*.pyc
+*~
+*.egg-info
+*.mo
+*.egg
+mail.py
+database.py
+env_settings.py

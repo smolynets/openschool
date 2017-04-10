@@ -1,0 +1,17 @@
+{% extends "students/base.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% block meta_title %}{% trans "pupils" %}{% endblock meta_title %}
+{% block content %}
+{% if user.is_authenticated %}
+
+
+
+
+<div class="alert alert-warning">
+{% trans "To add a student must first add the class!" %}!
+<a href="{% url "groups_add" %}">{% trans "Add" %}?</a>
+</div>
+
+{% endif %}
+{% endblock content %}

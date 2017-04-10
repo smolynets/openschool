@@ -1,0 +1,143 @@
+{% extends "students/base.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% block meta_title %}{% trans "Accounting Visits" %}{% endblock meta_title %}
+{% block title %}{% trans "Accounting Visits" %}{% endblock title %}
+{% block content %}
+{% if not students %}
+<div class="alert alert-warning">
+{% trans "While no pupil in the database. Please add first" %}!
+<a href="{% url "s_add" %}">{% trans "Add" %}?</a>
+</div>
+{% else %}
+<div class="alert alert-warning">
+    {% trans "Changes to the log kept at a table click" %}!
+    <span id="ajax-progress-indicator"> {% trans "There preservation" %} </span>
+</div>
+<p id="journal-nav" class="text-center">
+<a href="?month={{ prev_month }}"
+title="{% trans "previous month" %}">&larr;</a>
+<!-- TODO: translate month name -->
+<strong>{{ month_verbose }} {{ year }}</strong>
+<a href="?month={{ next_month }}"
+title="{% trans "next month" %}">&rarr;</a>
+</p>
+<table class="table table-hover table-striped table-bordered"
+id="students-journal">
+<thead>
+<tr class="header">
+<th class="num">#</th>
+<th class="name">{% trans "pupil" %}</th>
+{% for day in month_header %}
+<th class="day-header">
+{% trans day.verbose %}
+<br />
+{{ day.day }}
+</th>
+{% endfor %}
+</tr>
+</thead>
+<tbody>
+{% csrf_token %}
+{% for student in students %}
+<tr>
+<td>
+{% if is_paginated %}
+{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
+{% else %}
+{{ forloop.counter }}
+{% endif %}
+</td>
+<td>
+<a title="{% trans "edit" %}" target="_blank"
+href="{% url "students_edit" student.id %}">
+{{ student.fullname }}
+</a>
+</td>
+{% for day in student.days %}
+
+<td>
+
+
+    <div class="dropdown">
+    {% if day.present %}
+      <a  data-toggle="dropdown" class="dropdown-toggle">
+        
+        {% if day.present == "H" %}
+            <a  id="Hcolor" data-toggle="dropdown" class="dropdown-toggle">
+            {{day.present}}
+            </a>
+        {% else %}
+            <a  id="Pcolor" data-toggle="dropdown" class="dropdown-toggle">
+           {{day.present}}
+           </a>
+        {% endif %}
+    {% else %}
+      <a  data-toggle="dropdown" class="dropdown-toggle">
+         &mdash;
+      </a>
+    {% endif %}
+
+      <ul class="dropdown-menu">
+        {% if day.present == 'H' %}
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="&mdash;">  {% trans "present" %}</button></li>
+        {% endif %}
+        {% if not day.present == 'H' %}
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="H">  {% trans "missing" %}</button></li>
+        {% endif %}
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="1">  1</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="2">  2</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="3">  3</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="4">  4</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="5">  5</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="6">  6</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="7">  7</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="8">  8</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="9">  9</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="10">  10</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="11">  11</button></li>
+        <li><button data-student-id="{{ student.id }}" 
+        data-date="{{ day.date }}"  data-url="{{ student.update_url }}" 
+        data-present="12">  12</button></li>        
+
+        
+        
+      </ul>
+    </div>
+</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+{% with object_list=students %}
+{% include "students/pagination.html" %}
+{% endwith %}
+{% endblock content %}
